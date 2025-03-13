@@ -10,6 +10,8 @@ const initShadowButtonWidget = () => {
       return;
     }
 
+    const apiKey = targetElement.getAttribute("data-api-key");
+
     // Check if the element already has a shadow root
     let shadowRoot;
     if (targetElement.shadowRoot) {
@@ -28,7 +30,7 @@ const initShadowButtonWidget = () => {
     button.textContent = "Shadow DOM Button";
     button.addEventListener("click", () => {
       console.log("Button in shadow DOM was clicked!");
-      alert("Hello from the shadow DOM!");
+      alert(apiKey);
     });
 
     // Add styles
