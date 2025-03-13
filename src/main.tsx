@@ -1,3 +1,6 @@
+import Button from "./components/Button";
+import { createRoot } from "react-dom/client";
+
 const initShadowButtonWidget = () => {
   // Function to safely initialize when DOM is ready
   const initialize = () => {
@@ -9,7 +12,7 @@ const initShadowButtonWidget = () => {
       return;
     }
 
-    const apiKey = targetElement.getAttribute("data-api-key");
+    // const apiKey = targetElement.getAttribute("data-api-key");
 
     let shadowRoot;
     if (targetElement.shadowRoot) {
@@ -23,15 +26,18 @@ const initShadowButtonWidget = () => {
       shadowRoot = targetElement.attachShadow({ mode: "open" });
     }
 
-    // Create button element
-    const button = document.createElement("button");
-    button.textContent = "Shadow DOM Button";
-    button.addEventListener("click", () => {
-      console.log("Button in shadow DOM was clicked!");
-      alert(apiKey);
-    });
+    // Create a container for React to render into
+    const reactContainer = document.createElement("div");
+    shadowRoot.appendChild(reactContainer);
 
-    shadowRoot.appendChild(button);
+    // Define a wrapper component that can use the apiKey
+    const ButtonWrapper = () => {
+      return <Button />;
+    };
+
+    // Render the React component into the shadow DOM
+    const root = createRoot(reactContainer);
+    root.render(<ButtonWrapper />);
   };
 
   // Check if document is already loaded
@@ -48,3 +54,6 @@ const initShadowButtonWidget = () => {
 
 // Initialize the widget
 initShadowButtonWidget();
+
+// Export the initialization function for external use
+export default initShadowButtonWidget;
