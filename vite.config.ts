@@ -11,7 +11,7 @@ export default defineConfig({
       entry: "src/main.tsx",
       name: "ShadowButtonWidget",
       formats: ["umd"],
-      fileName: () => "shadow-button-widget.js",
+      fileName: () => "shadow-button-widget1.js",
     },
     rollupOptions: {
       // No need to externalize React since we're not using it in the final bundle
