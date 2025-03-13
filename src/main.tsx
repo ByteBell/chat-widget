@@ -4,6 +4,8 @@
 //     // Find target element - don't create it if it doesn't exist
 //     const targetElement = document.getElementById("bytebellai");
 
+import Button from "./components/Button";
+
 //     if (!targetElement) {
 //       console.error('Target element with ID "bytebellai" not found.');
 //       return;
@@ -11,56 +13,9 @@
 
 //     const apiKey = targetElement.getAttribute("data-api-key");
 
-//     let shadowRoot;
-//     if (targetElement.shadowRoot) {
-//       shadowRoot = targetElement.shadowRoot;
-//       // Clear existing content
-//       while (shadowRoot.firstChild) {
-//         shadowRoot.firstChild.remove();
-//       }
-//     } else {
-//       // Create a new shadow root
-//       shadowRoot = targetElement.attachShadow({ mode: "open" });
-//     }
+//     const shadowRoot = targetElement.attachShadow({ mode: "open" });
 
-//     // Create button element
-//     const button = document.createElement("button");
-//     button.textContent = "Shadow DOM Button";
-//     button.addEventListener("click", () => {
-//       console.log("Button in shadow DOM was clicked!");
-//       alert(apiKey);
-//     });
-
-//     // Add styles
-//     const style = document.createElement("style");
-//     style.textContent = `
-//       button {
-//         background-color: #4CAF50;
-//         border: none;
-//         color: white;
-//         padding: 15px 32px;
-//         text-align: center;
-//         text-decoration: none;
-//         display: inline-block;
-//         font-size: 16px;
-//         margin: 4px 2px;
-//         cursor: pointer;
-//         border-radius: 8px;
-//         transition: background-color 0.3s;
-//       }
-
-//       button:hover {
-//         background-color: #45a049;
-//       }
-
-//       button:active {
-//         background-color: #3e8e41;
-//       }
-//     `;
-
-//     // Append elements to shadow root
-//     shadowRoot.appendChild(style);
-//     shadowRoot.appendChild(button);
+//     shadowRoot.appendChild(document.getElementById);
 //   };
 
 //   // Check if document is already loaded
@@ -78,13 +33,19 @@
 // // Initialize the widget
 // initShadowButtonWidget();
 
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import Button from "./components/Button";
+// import "./index.css";
+// import App from "./App";
 
-createRoot(document.getElementById("bytebellai")!).render(
-  <StrictMode>
-    <Button />
-  </StrictMode>
-);
+const targetElement = document.getElementById("bytebellai");
+
+// Create a shadow root
+const shadowRoot = targetElement?.attachShadow({ mode: "open" });
+
+// Create a container for your React app inside the shadow DOM
+const reactContainer = document.createElement("div");
+shadowRoot?.appendChild(reactContainer);
+
+const root = createRoot(reactContainer);
+root.render(<Button />);
