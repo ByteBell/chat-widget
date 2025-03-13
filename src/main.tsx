@@ -1,6 +1,3 @@
-import { createRoot } from "react-dom/client";
-import Button from "./components/Button";
-
 const initShadowButtonWidget = () => {
   // Function to safely initialize when DOM is ready
   const initialize = () => {
@@ -12,16 +9,29 @@ const initShadowButtonWidget = () => {
       return;
     }
 
-    // const apiKey = targetElement.getAttribute("data-api-key");
+    const apiKey = targetElement.getAttribute("data-api-key");
 
-    const shadowRoot = targetElement.attachShadow({ mode: "open" });
+    let shadowRoot;
+    if (targetElement.shadowRoot) {
+      shadowRoot = targetElement.shadowRoot;
+      // Clear existing content
+      while (shadowRoot.firstChild) {
+        shadowRoot.firstChild.remove();
+      }
+    } else {
+      // Create a new shadow root
+      shadowRoot = targetElement.attachShadow({ mode: "open" });
+    }
 
-    // Create a container for your React app inside the shadow DOM
-    const reactContainer = document.createElement("div");
-    shadowRoot?.appendChild(reactContainer);
+    // Create button element
+    const button = document.createElement("button");
+    button.textContent = "Shadow DOM Button";
+    button.addEventListener("click", () => {
+      console.log("Button in shadow DOM was clicked!");
+      alert(apiKey);
+    });
 
-    const root = createRoot(reactContainer);
-    root.render(<Button />);
+    shadowRoot.appendChild(button);
   };
 
   // Check if document is already loaded
