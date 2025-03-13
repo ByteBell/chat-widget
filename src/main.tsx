@@ -65,9 +65,13 @@ const initShadowButtonWidget = () => {
 
   // Check if document is already loaded
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialize);
+    document.addEventListener("DOMContentLoaded", () => {
+      // Add a 1-second delay before initializing
+      setTimeout(initialize, 1000);
+    });
   } else {
-    initialize();
+    // Document already loaded, still delay by 1 second
+    setTimeout(initialize, 1000);
   }
 };
 
