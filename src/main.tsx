@@ -1,3 +1,6 @@
+import App from "./App";
+import { createRoot } from "react-dom/client";
+
 const initShadowButtonWidget = () => {
   // Function to safely initialize when DOM is ready
   const initialize = () => {
@@ -9,7 +12,7 @@ const initShadowButtonWidget = () => {
       return;
     }
 
-    const apiKey = targetElement.getAttribute("data-api-key");
+    // const apiKey = targetElement.getAttribute("data-api-key");
 
     let shadowRoot;
     if (targetElement.shadowRoot) {
@@ -24,16 +27,15 @@ const initShadowButtonWidget = () => {
     }
 
     // Create button element
-    const button = document.createElement("button");
-    button.textContent = "Shadow DOM Button";
-    button.addEventListener("click", () => {
-      console.log("Button in shadow DOM was clicked!");
-      alert(apiKey);
-    });
+    const rootElement = document.createElement("div");
+    rootElement.id = "extension-app-root";
 
-    // Append elements to shadow root
+    // Append the react root element to the shadow root
+    shadowRoot.appendChild(rootElement);
 
-    shadowRoot.appendChild(button);
+    // Create a react root and render the app with the apiKey
+    const reactRoot = createRoot(rootElement);
+    reactRoot.render(<App />);
   };
 
   // Check if document is already loaded
