@@ -8,7 +8,7 @@ export default defineConfig({
       entry: "src/main.tsx",
       name: "ShadowButtonWidget",
       formats: ["umd"],
-      fileName: () => "shadow-button-widget14.js",
+      fileName: () => "shadow-button-widget15.js",
     },
     minify: "terser",
     rollupOptions: {
