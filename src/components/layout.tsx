@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -24,16 +23,10 @@ const Layout = ({ apiKey }: LayoutProps) => {
             Mode ai
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-[90vw] h-[90vh]  flex flex-col p-2 sm:p-4 bg-white">
           <DialogHeader>
-            <DialogTitle>Dialog Box</DialogTitle>
-            <DialogDescription>
-              This is the dialog content that appears when you click the button.
-            </DialogDescription>
+            <DialogTitle>Mode {apiKey}</DialogTitle>
           </DialogHeader>
-          <div className="p-4 text-center font-medium">
-            main content of widget apiKey = {apiKey}
-          </div>
         </DialogContent>
       </Dialog>
     </div>

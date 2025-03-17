@@ -1,5 +1,8 @@
 import App from "./App";
 import { createRoot } from "react-dom/client";
+import { install } from "@twind/core";
+import config from "./twind.config";
+install(config);
 
 (function () {
   const mountWidget = () => {
@@ -17,17 +20,17 @@ import { createRoot } from "react-dom/client";
     // Get API key from data attribute
     const apiKey = container.getAttribute("data-api-key");
 
-    const shadowRoot = container.attachShadow({ mode: "open" });
+    // const shadowRoot = container.attachShadow({ mode: "open" });
 
     // Create container for React
-    const reactContainer = document.createElement("div");
-    reactContainer.id = "bytebell-widget-root";
+    // const reactContainer = document.createElement("div");
+    // reactContainer.id = "bytebell-widget-root";
 
     // Append container to shadow root
-    shadowRoot.appendChild(reactContainer);
+    // shadowRoot.appendChild(reactContainer);
 
     // Initialize React and render the App
-    const reactRoot = createRoot(reactContainer);
+    const reactRoot = createRoot(container);
     reactRoot.render(<App apiKey={apiKey} />);
   };
 
