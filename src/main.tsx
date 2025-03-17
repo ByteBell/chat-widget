@@ -1,8 +1,5 @@
 import App from "./App";
 import { createRoot } from "react-dom/client";
-import { install } from "@twind/core";
-import config from "./twind.config";
-install(config);
 
 (function () {
   const mountWidget = () => {

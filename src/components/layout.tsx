@@ -13,7 +13,7 @@ interface LayoutProps {
 
 const Layout = ({ apiKey }: LayoutProps) => {
   return (
-    <div>
+    <div className="z-[999]">
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="outline">Mode ai</Button>
