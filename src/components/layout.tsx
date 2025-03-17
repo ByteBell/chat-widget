@@ -9,7 +9,11 @@ import {
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 
-const Layout = () => {
+interface LayoutProps {
+  apiKey: string | null;
+}
+
+const Layout = ({ apiKey }: LayoutProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,7 +21,7 @@ const Layout = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="outline" className="mt-4">
-            Open Dialog
+            Mode ai
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
@@ -28,7 +32,7 @@ const Layout = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="p-4 text-center font-medium">
-            main content of widget
+            main content of widget apiKey = {apiKey}
           </div>
         </DialogContent>
       </Dialog>

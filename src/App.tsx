@@ -8,8 +8,7 @@ interface AppProps {
 function App({ apiKey }: AppProps) {
   return (
     <>
-      {apiKey}
-      <Layout />
+      <Layout apiKey={apiKey} />
     </>
   );
 }
