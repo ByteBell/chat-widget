@@ -16,14 +16,12 @@ const Layout = ({ apiKey }: LayoutProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="p-4">
+    <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline" className="mt-4">
-            Mode ai
-          </Button>
+          <Button variant="outline">Mode ai</Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[90vw] h-[90vh]  flex flex-col p-2 sm:p-4 bg-white">
+        <DialogContent className="sm:max-w-[90vw] h-[90vh] flex flex-col p-2 sm:p-4 bg-white">
           <DialogHeader>
             <DialogTitle>Mode {apiKey}</DialogTitle>
           </DialogHeader>
