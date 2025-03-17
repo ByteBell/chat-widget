@@ -1,54 +1,42 @@
 import App from "./App";
 import { createRoot } from "react-dom/client";
 
-const initShadowButtonWidget = () => {
-  // Function to safely initialize when DOM is ready
-  const initialize = () => {
-    // Find target element - don't create it if it doesn't exist
-    const targetElement = document.getElementById("bytebellai");
+(function () {
+  const mountWidget = () => {
+    // Find the container element
+    const container = document.getElementById("bytebellai");
 
-    if (!targetElement) {
-      console.error('Target element with ID "bytebellai" not found.');
+    // Exit if container is not found
+    if (!container) {
+      console.error(
+        'Shadow Widget: Target element with ID "bytebellai" not found.'
+      );
       return;
     }
 
-    // const apiKey = targetElement.getAttribute("data-api-key");
+    // Get API key from data attribute
+    const apiKey = container.getAttribute("data-api-key");
 
-    let shadowRoot;
-    if (targetElement.shadowRoot) {
-      shadowRoot = targetElement.shadowRoot;
-      // Clear existing content
-      while (shadowRoot.firstChild) {
-        shadowRoot.firstChild.remove();
-      }
-    } else {
-      // Create a new shadow root
-      shadowRoot = targetElement.attachShadow({ mode: "open" });
-    }
+    const shadowRoot = container.attachShadow({ mode: "open" });
 
-    // Create button element
-    const rootElement = document.createElement("div");
-    rootElement.id = "extension-app-root";
+    // Create container for React
+    const reactContainer = document.createElement("div");
+    reactContainer.id = "bytebell-widget-root";
 
-    // Append the react root element to the shadow root
-    shadowRoot.appendChild(rootElement);
+    // Append container to shadow root
+    shadowRoot.appendChild(reactContainer);
 
-    // Create a react root and render the app with the apiKey
-    const reactRoot = createRoot(rootElement);
-    reactRoot.render(<App />);
+    // Initialize React and render the App
+    const reactRoot = createRoot(reactContainer);
+    reactRoot.render(<App apiKey={apiKey} />);
   };
 
-  // Check if document is already loaded
+  // Determine when to mount the widget based on document state
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
-      // Add a 1-second delay before initializing
-      setTimeout(initialize, 1000);
+      setTimeout(mountWidget, 1000);
     });
   } else {
-    // Document already loaded, still delay by 1 second
-    setTimeout(initialize, 1000);
+    setTimeout(mountWidget, 1000);
   }
-};
-
-// Initialize the widget
-initShadowButtonWidget();
+})();

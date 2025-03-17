@@ -1,9 +1,15 @@
 import "./App.css";
+import Layout from "./components/layout";
 
-function App() {
+interface AppProps {
+  apiKey: string | null;
+}
+
+function App({ apiKey }: AppProps) {
   return (
     <>
-      <div style={{ backgroundColor: "cyan" }}>hey this is app</div>
+      {apiKey}
+      <Layout />
     </>
   );
 }
