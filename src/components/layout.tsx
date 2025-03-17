@@ -13,10 +13,12 @@ interface LayoutProps {
 
 const Layout = ({ apiKey }: LayoutProps) => {
   return (
-    <div className="z-[999]">
+    <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Mode ai</Button>
+          <Button variant="outline" className="bg-green-500">
+            Mode ai
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:!min-w-[90vw] !min-h-[90vh] flex flex-col p-2 sm:p-4 bg-white bgclass">
           <DialogHeader>

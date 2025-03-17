@@ -1,5 +1,6 @@
 import App from "./App";
 import { createRoot } from "react-dom/client";
+import styleText from "./app.css?inline";
 
 (function () {
   const mountWidget = () => {
@@ -17,17 +18,20 @@ import { createRoot } from "react-dom/client";
     // Get API key from data attribute
     const apiKey = container.getAttribute("data-api-key");
 
-    // const shadowRoot = container.attachShadow({ mode: "open" });
+    const shadowRoot = container.attachShadow({ mode: "open" });
 
     // Create container for React
-    // const reactContainer = document.createElement("div");
-    // reactContainer.id = "bytebell-widget-root";
+    const reactContainer = document.createElement("div");
+    reactContainer.id = "bytebell-widget-root";
 
     // Append container to shadow root
-    // shadowRoot.appendChild(reactContainer);
+    shadowRoot.appendChild(reactContainer);
+    const style = document.createElement("style");
+    style.textContent = styleText;
+    shadowRoot.appendChild(style);
 
     // Initialize React and render the App
-    const reactRoot = createRoot(container);
+    const reactRoot = createRoot(reactContainer);
     reactRoot.render(<App apiKey={apiKey} />);
   };
 
