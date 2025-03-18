@@ -16,7 +16,7 @@ const Layout = ({ apiKey }: LayoutProps) => {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" className="bg-green-500">
+          <Button variant="outline" className="bgclass">
             Mode ai
           </Button>
         </DialogTrigger>
