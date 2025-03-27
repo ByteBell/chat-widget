@@ -1,14 +1,10 @@
 import "./App.css";
 import Layout from "./components/layout";
 
-interface AppProps {
-  apiKey: string | null;
-}
-
-function App({ apiKey }: AppProps) {
+function App() {
   return (
     <>
-      <Layout apiKey={apiKey} />
+      <Layout />
     </>
   );
 }

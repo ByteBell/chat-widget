@@ -7,11 +7,7 @@ import {
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 
-interface LayoutProps {
-  apiKey: string | null;
-}
-
-const Layout = ({ apiKey }: LayoutProps) => {
+const Layout = () => {
   return (
     <div>
       <Dialog>
@@ -22,7 +18,7 @@ const Layout = ({ apiKey }: LayoutProps) => {
         </DialogTrigger>
         <DialogContent className="sm:!min-w-[90vw] !min-h-[90vh] flex flex-col p-2 sm:p-4 bg-white bgclass">
           <DialogHeader>
-            <DialogTitle>Mode {apiKey}</DialogTitle>
+            <DialogTitle>Mode </DialogTitle>
           </DialogHeader>
         </DialogContent>
       </Dialog>

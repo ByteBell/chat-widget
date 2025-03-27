@@ -1,13 +1,13 @@
-import App from "./App";
 import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import Frame from "react-frame-component";
 import styleText from "./app.css?inline";
 
 (function () {
   const mountWidget = () => {
-    // Find the container element
     const container = document.getElementById("bytebellai");
 
-    // Exit if container is not found
     if (!container) {
       console.error(
         'Shadow Widget: Target element with ID "bytebellai" not found.'
@@ -15,32 +15,35 @@ import styleText from "./app.css?inline";
       return;
     }
 
-    // Get API key from data attribute
-    const apiKey = container.getAttribute("data-api-key");
+    const initialContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>${styleText}</style>
+        </head>
+        <body>
+          <div id="mountHere"></div>
+        </body>
+      </html>
+    `;
 
-    const shadowRoot = container.attachShadow({ mode: "open" });
-
-    // Create container for React
-    const reactContainer = document.createElement("div");
-    reactContainer.id = "bytebell-widget-root";
-
-    // Append container to shadow root
-    shadowRoot.appendChild(reactContainer);
-    const style = document.createElement("style");
-    style.textContent = styleText;
-    shadowRoot.appendChild(style);
-
-    // Initialize React and render the App
-    const reactRoot = createRoot(reactContainer);
-    reactRoot.render(<App apiKey={apiKey} />);
+    createRoot(container).render(
+      <Frame
+        id="__modal_iframe"
+        initialContent={initialContent}
+        style={{ width: "100%", height: "100%", border: "none" }}
+      >
+        <App />
+      </Frame>
+    );
   };
 
   // Determine when to mount the widget based on document state
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(mountWidget, 1000);
+      setTimeout(mountWidget, 2000);
     });
   } else {
-    setTimeout(mountWidget, 1000);
+    setTimeout(mountWidget, 2000);
   }
 })();
