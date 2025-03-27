@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import Frame from "react-frame-component";
-import styleText from "./app.css?inline";
+// import styleText from "./app.css?inline";
 
 (function () {
   const mountWidget = () => {
@@ -15,22 +15,22 @@ import styleText from "./app.css?inline";
       return;
     }
 
-    const initialContent = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <style>${styleText}</style>
-        </head>
-        <body>
-          <div id="mountHere"></div>
-        </body>
-      </html>
-    `;
+    // const initialContent = `
+    //   <!DOCTYPE html>
+    //   <html>
+    //     <head>
+    //       <style>${styleText}</style>
+    //     </head>
+    //     <body>
+    //       <div id="mountHere"></div>
+    //     </body>
+    //   </html>
+    // `;
 
     createRoot(container).render(
       <Frame
         id="__modal_iframe"
-        initialContent={initialContent}
+        // initialContent={initialContent}
         style={{ width: "100%", height: "100%", border: "none" }}
       >
         <App />
